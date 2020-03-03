@@ -1,0 +1,4 @@
+---
+# vars file for insights-sync
+
+satellite_api: https://{{ satellite_fqdn }}/api

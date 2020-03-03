@@ -1,0 +1,23 @@
+- name: Get Remediation plans
+  uri:
+    url: https://cloud.redhat.com/api/remediations/v1/remediations
+    method: GET
+    status_code: 200
+    url_username: '{{ insights_username }}'
+    url_password: '{{ insights_password }}'
+    force_basic_auth: true
+  register: plan_list
+
+- debug: var=plan_list.json.data
+
+- name: Fetch Remediation plans
+  get_url:
+    url: https://cloud.redhat.com/api/remediations/v1/remediations/{{ item.id }}/playbook
+    dest: '{{ plan_dir }}/{{ item.name }}.yml'
+    url_username: '{{ insights_username }}'
+    url_password: '{{ insights_password }}'
+    force_basic_auth: true
+    owner: '{%if tower %}awx{%else%}{{ omit }}{%endif%}'
+    group: '{%if tower %}awx{%else%}{{ omit }}{%endif%}'
+  loop: '{{ plan_list.json.data }}'
+  when: plans_to_fetch == [] or item.name in plans_to_fetch

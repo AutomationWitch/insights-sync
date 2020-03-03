@@ -1,0 +1,13 @@
+---
+# defaults file for insights-sync
+
+plans_to_fetch: []
+
+plan_dir: /var/tmp
+
+insights_location: cloud
+insights_username: '{{ rhsm_username }}'
+insights_password: '{{ rhsm_password }}'
+
+satellite_username: admin
+satellite_fqdn: satellite.{{ stack_name }}.awitch.cloud

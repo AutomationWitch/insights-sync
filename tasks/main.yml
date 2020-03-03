@@ -1,0 +1,8 @@
+---
+# tasks file for insights-sync
+
+- include_tasks: cloud.yml
+  when: insights_location == 'cloud'
+
+- include_tasks: satellite.yml
+  when: insights_location == 'satellite'
