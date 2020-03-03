@@ -11,3 +11,5 @@ insights_password: '{{ rhsm_password }}'
 
 satellite_username: admin
 satellite_fqdn: satellite.{{ stack_name }}.awitch.cloud
+
+tower: false

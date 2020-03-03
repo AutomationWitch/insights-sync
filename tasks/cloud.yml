@@ -19,5 +19,7 @@
     force_basic_auth: true
     owner: '{%if tower %}awx{%else%}{{ omit }}{%endif%}'
     group: '{%if tower %}awx{%else%}{{ omit }}{%endif%}'
+  become: '{%if tower %}true{%else%}{{ omit }}{%endif%}'
+  become_user: '{%if tower %}awx{%else%}{{ omit }}{%endif%}'
   loop: '{{ plan_list.json.data }}'
   when: plans_to_fetch == [] or item.name in plans_to_fetch
